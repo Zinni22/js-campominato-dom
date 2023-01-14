@@ -1,0 +1,54 @@
+/* GENERALI */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.flex{
+    display: flex;
+}
+
+/* HEADER */
+header{
+    height:50px;
+    padding: 0px 400px;
+    justify-content: space-between;
+    align-items: center;
+}
+header #generate-button{
+    border: 2px solid #7fffd4;
+    padding: 0.6rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/* MAIN */
+main{
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: #7fffd4;
+    justify-content: center;
+    align-items: center;
+}
+#grid-container{
+    width: 80vh;
+    height: 80vh;
+    flex-wrap: wrap;
+}
+#grid-container .cell{
+    width: calc(100%/10);
+    height: calc(100%/10);
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#grid-container .clicked{
+    background-color: aqua;
+}
