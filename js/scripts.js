@@ -13,12 +13,27 @@ console.log('Ho selezionato l\'elemento', gridContainer);
 const generateButton = document.getElementById('generate-button');
 console.log('Ho selezionato l\'elemento', generateButton);
 
+
+
 // cliccando compare la griglia
 generateButton.addEventListener('click',
     function() {
-        const newCell = createNewCell();
+
+        bombs = [];
+
+        // creo le bombe nella griglia
+        for (let i = 0; i < 16; i++){
+            const newBomb = getUniqueBombs(1, 100, bombs);
+            bombs.push(newBomb);
+        }
+        console.log('le bombe sono', bombs);
+
+        const newCell = createNewCell(bombs);
+
+
     }
-)
+
+);
 
 
 
@@ -41,10 +56,10 @@ generateButton.addEventListener('click',
 
 
 
+// FUNZIONI
 
-
-
-function createNewCell (){
+//Funzione celle
+function createNewCell (redBomb){
 
     for(let i = 1 ; i <= 100 ; i++){
 
@@ -55,22 +70,41 @@ function createNewCell (){
     
         //mostro all'interno il contenuto
         cell.innerHTML = [i];
-    
-        // aggiungo il click
-        cell.addEventListener('click',
+
+         // aggiungo il click colorato
+        cell.addEventListener('click', 
     
         function () {
-            if (cell.classList.contains('clicked')){
-                cell.classList.remove('clicked');
+            if (redBomb.includes(cell.innerHTML = [i])){
+                cell.classList.add('bombs');
+                console.log('Ho cliccato sulla bomba', redBomb);
+                alert('Hai perso');
             }
             else{
                 cell.classList.add('clicked');
-                console.log('La cella cliccata contiene il numero', i);
+                console.log('Ho cliccato sulla cella', i);
             }
         }
-    
-        );
-    
+
+    );
+
     }
 
+}
+
+// Funzione per generare le bombe casuali
+function getBombs (min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Funzione per bombe uniche
+function getUniqueBombs (min, max, arr){
+
+    let randomBombs = getBombs(min, max);
+
+    while(arr.includes(randomBombs)){
+        randomBombs = getBombs(min, max);
+    }
+
+    return randomBombs;
 }
